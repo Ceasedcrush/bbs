@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.example.dao.AdminUserDao">
+<!--    查询所有管理员信息-->
+    <select id="getAdminUserList" resultType="com.example.bean.AdminUser">
+        select * from adminuser_info
+    </select>
+
+<!--    查询登陆信息-->
+    <select id="login_info" resultType="com.example.bean.AdminUser">
+        select * from adminuser_info where username = #{username} and password = #{password}
+    </select>
+</mapper>
