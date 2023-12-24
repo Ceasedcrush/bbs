@@ -9,8 +9,8 @@
     <select id="select_Username" resultType="com.example.bean.User">
         select * from user_info where username = #{username}
     </select>
-    <select id="add_User" resultType="com.example.bean.User">
+    <insert id="add_User" parameterType="com.example.bean.User">
         insert into user_info (nickname, username, password, birthday, face, sex, phone, email, signature)
         values (#{nickname}, #{username}, #{password}, #{birthday}, #{face}, #{sex}, #{phone}, #{email}, #{signature})
-    </select>
+    </insert>
 </mapper>

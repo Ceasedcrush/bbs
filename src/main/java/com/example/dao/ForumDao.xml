@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.example.dao.ForumDao">
+    <resultMap id="forumResultMap" type="com.example.bean.Forum">
+        <result property="userId" column="user_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="replyCount" column="reply_count"/>
+    </resultMap>
+<!--    获取帖子信息-->
+    <select id="forum_info" resultMap="forumResultMap">
+        select * from forum_info where fid = #{fid}
+    </select>
+    
+<!--    发帖-->
+    <insert id="post" parameterType="com.example.bean.Forum">
+        insert into forum_info (title, content, create_time, user_id)
+        values (#{title}, #{content}, #{createTime}, #{userId})
+    </insert>
+
+
+</mapper>

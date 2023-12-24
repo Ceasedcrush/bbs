@@ -18,6 +18,7 @@
     
     <mappers>
         <mapper resource="com/example/dao/AdminUserDao.xml"/>
-        <mapper resource="com/example/dao/Userdao.xml"/>
+        <mapper resource="com/example/dao/UserDao.xml"/>
+        <mapper resource="com/example/dao/ForumDao.xml"/>
     </mappers>
 </configuration>

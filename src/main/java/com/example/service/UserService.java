@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 public class UserService {
     //获取sqlSession对象
     SqlSession sqlSession;
-    //获取Userdao接口的对象
+    //获取UserDao接口的对象
     UserDao userDao;
     User u;
     public User login(String username, String password) {
