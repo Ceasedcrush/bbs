@@ -4,18 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.example.dao.ForumDao">
-    <resultMap id="forumResultMap" type="com.example.bean.Forum">
+    <resultMap id="forumResultMap" type="Forum">
         <result property="userId" column="user_id"/>
         <result property="createTime" column="create_time"/>
         <result property="replyCount" column="reply_count"/>
+        
+<!--        嵌套查询-->
+        <association property="author" javaType="com.example.bean.User"
+            column="user_id"
+            select="com.example.dao.UserDao.findUserById"
+        >
+        </association>
     </resultMap>
+    
+<!--    获取全部帖子-->                   
+    <select id="getpostList" resultMap="forumResultMap">
+        select * from forum_info
+    </select>
+    
 <!--    获取帖子信息-->
-    <select id="forum_info" resultMap="forumResultMap">
+    <select id="post_info" resultMap="forumResultMap">
         select * from forum_info where fid = #{fid}
     </select>
     
 <!--    发帖-->
-    <insert id="post" parameterType="com.example.bean.Forum">
+    <insert id="post" parameterType="Forum">
         insert into forum_info (title, content, create_time, user_id)
         values (#{title}, #{content}, #{createTime}, #{userId})
     </insert>

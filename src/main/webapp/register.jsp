@@ -7,7 +7,8 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
+<!DOCTYPE html>
+<html lang="zh">
 <head>
     <title>欢迎注册</title>
 </head>

@@ -22,12 +22,12 @@ public class PostServlet extends HttpServlet {
         //获取当前登录用户信息
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
+        
         int userId = user.getId();
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date date=new Date();
-        String nowTime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        Date date= new Date();  
+        String nowTime= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
         Timestamp createTime = Timestamp.valueOf(nowTime);//时间转换 java.util.Date是java.sql.Date的父类
         
         forumService.post(title, content, createTime, userId);

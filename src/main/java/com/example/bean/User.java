@@ -3,8 +3,17 @@ package com.example.bean;
 import java.util.Date;
 
 public class User {
-    private int id, status, idAdmin;
-    private String nickname, username, password, sex, face, phone, email, signature;
+    private int id;
+    private int status;
+    private int idAdmin;
+    private String nickname;
+    private String username;
+    private String password;
+    private String sex;
+    private String face;
+    private String phone;
+    private String email;
+    private String signature;
     private Date birthday;
 
     public User() {
@@ -104,12 +113,12 @@ public class User {
         this.email = email;
     }
 
-    public String getSingature() {
+    public String getSignature() {
         return signature;
     }
 
-    public void setSingature(String singature) {
-        this.signature = singature;
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     public Date getBirthday() {

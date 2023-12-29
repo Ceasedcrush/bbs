@@ -6,11 +6,17 @@
     <select id="login_info" resultType="com.example.bean.User">
         select * from user_info where username = #{username} and password = #{password}
     </select>
+    
     <select id="select_Username" resultType="com.example.bean.User">
         select * from user_info where username = #{username}
     </select>
+    
     <insert id="add_User" parameterType="com.example.bean.User">
         insert into user_info (nickname, username, password, birthday, face, sex, phone, email, signature)
         values (#{nickname}, #{username}, #{password}, #{birthday}, #{face}, #{sex}, #{phone}, #{email}, #{signature})
     </insert>
+    
+    <select id="findUserById" resultType="com.example.bean.User">
+        select * from user_info where id = #{userId};
+    </select>
 </mapper>

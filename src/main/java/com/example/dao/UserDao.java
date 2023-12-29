@@ -8,4 +8,5 @@ public interface UserDao {
     public User select_Username(String username);
     public int add_User(User user);
     
+    User findUserById(int userId);
 }

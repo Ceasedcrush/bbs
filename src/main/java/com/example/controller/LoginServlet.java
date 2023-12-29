@@ -15,8 +15,6 @@ import java.io.IOException;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
@@ -36,7 +34,6 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("administer", adminUser);
 
-                String contextPath = req.getContextPath();
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
         }
@@ -52,8 +49,7 @@ public class LoginServlet extends HttpServlet {
             else {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
-
-                String contextPath = req.getContextPath();
+                
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
         }

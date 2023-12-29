@@ -31,11 +31,11 @@ public class PostFilter implements Filter{
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        //暂时用不到   
     }
 
     @Override
     public void destroy() {
-        
+        //暂时用不到 
     }
 }

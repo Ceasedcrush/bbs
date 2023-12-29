@@ -6,11 +6,20 @@ import com.example.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;
+import java.util.List;
 
 public class ForumService {
     SqlSession sqlSession;
     ForumDao forumDao;
-    Forum _forum;
+    
+    public List<Forum> getpostList() {
+        sqlSession = MybatisUtils.getSqlSession();
+        forumDao = sqlSession.getMapper(ForumDao.class);
+
+//        sqlSession.close();
+        return forumDao.getpostList();
+    }
+    
     public void post (String title, String content, Date createTime, int userId) {
         sqlSession = MybatisUtils.getSqlSession();
         forumDao = sqlSession.getMapper(ForumDao.class);

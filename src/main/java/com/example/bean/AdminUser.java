@@ -3,9 +3,11 @@ package com.example.bean;
 import java.io.Serializable;
 
 public class AdminUser implements Serializable {
-    private int id, status;
-    private String nickname, username, password;
-
+    private int id;
+    private int status;
+    private String nickname;
+    private String username;
+    private String password;
     public AdminUser(){
 
     }
