@@ -2,63 +2,73 @@ package com.example.controller;
 
 import com.example.bean.AdminUser;
 import com.example.bean.User;
-import com.example.service.AdminUserService;
-import com.example.service.UserService;
+import com.example.service.LoginService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
+    private LoginService loginService = new LoginService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        //获取用户登陆类型
+        String remember = req.getParameter("remember");
+        //获取会话
+        HttpSession session = req.getSession();
+
         int type = Integer.parseInt(req.getParameter("type"));
 
         if (type == 2) {
-            AdminUserService adminUserService = new AdminUserService();
-            AdminUser adminUser = adminUserService.login(username, password);
+            AdminUser adminUser = loginService.adminLogin(username, password);
             if (adminUser == null) {
-                req.setAttribute("login_msg","用户名或密码错误");
-                // 跳转到login.jsp
+                req.setAttribute("login_msg","账号或密码错误");
                 req.getRequestDispatcher("/login.jsp").forward(req,resp);
-            }
-            else {
-                HttpSession session = req.getSession();
-                session.setAttribute("administer", adminUser);
 
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                return ;
             }
+
+            session.setAttribute("user", adminUser);
+            if ("1".equals(remember)) {
+                dealCookie(username, password, resp);
+            }
+
+            resp.sendRedirect("indexServlet");
         }
         else {
-            UserService userService = new UserService();
-            User user = userService.login(username, password);
-
+            User user = loginService.login(username, password);
             if (user == null) {
-                req.setAttribute("login_msg","用户名或密码错误");
-
+                req.setAttribute("login_msg","账号或密码错误");
                 req.getRequestDispatcher("/login.jsp").forward(req,resp);
             }
-            else {
-                HttpSession session = req.getSession();
-                session.setAttribute("user", user);
-                
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
+
+            session.setAttribute("user", user);
+            if ("1".equals(remember)) {
+                dealCookie(username, password, resp);
             }
+            resp.sendRedirect("indexServlet");
         }
-
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req, resp);
+    }
+
+    private void dealCookie(String username, String password, HttpServletResponse response) {
+        // 创建 Cookie 对象并设置用户名和密码
+        Cookie c_username = new Cookie("username", username);
+        Cookie c_password = new Cookie("password", password);
+
+        // 设置 Cookie 的存活时间，例如 7 天
+        c_username.setMaxAge(60 * 60 * 24 * 7);
+        c_password.setMaxAge(60 * 60 * 24 * 7);
+
+        // 发送 Cookie 到客户端
+        response.addCookie(c_username);
+        response.addCookie(c_password);
     }
 }

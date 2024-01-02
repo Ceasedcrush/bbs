@@ -33,7 +33,7 @@ public class PostServlet extends HttpServlet {
         forumService.post(title, content, createTime, userId);
         
         req.setAttribute("post_msg", "发帖成功！");
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/user_page.jsp").forward(req, resp);
     }
 
     @Override

@@ -1,30 +1,23 @@
 package com.example.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.example.bean.Forum;
-import com.example.service.ForumService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Locale;
 
-@WebServlet("/goalpostServlet")
-public class GoalPostServlet extends HttpServlet {
-    private ForumService forumService = new ForumService();
+@WebServlet("/logoutServlet")
+public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //获取帖子信息
-        List<Forum> postList = forumService.getpostList();
+        //        将session中的用户信息失效
+        HttpSession httpSession = req.getSession();
+        httpSession.invalidate();
 
-        req.setAttribute("postList", postList);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     @Override

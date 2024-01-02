@@ -2,16 +2,14 @@ package com.example.bean;
 
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class Forum implements Serializable {
     private int fid;
     private int up;
     private int replyCount;
     private int userId;
+    private  int selected;
     private String title;
     private String content;
     private Date createTime;
@@ -20,11 +18,12 @@ public class Forum implements Serializable {
     public Forum() {
     }
 
-    public Forum(int fid, int up, int replyCount, int userId, String title, String content, Date createTime, User author) {
+    public Forum(int fid, int up, int replyCount, int userId, int selected, String title, String content, Date createTime, User author) {
         this.fid = fid;
         this.up = up;
         this.replyCount = replyCount;
         this.userId = userId;
+        this.selected = selected;
         this.title = title;
         this.content = content;
         this.createTime = createTime;
@@ -93,6 +92,14 @@ public class Forum implements Serializable {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
     }
 
     @Override

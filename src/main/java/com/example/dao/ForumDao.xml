@@ -18,7 +18,7 @@
     </resultMap>
     
 <!--    获取全部帖子-->                   
-    <select id="getpostList" resultMap="forumResultMap">
+    <select id="getPostList" resultMap="forumResultMap">
         select * from forum_info
     </select>
     
@@ -33,5 +33,27 @@
         values (#{title}, #{content}, #{createTime}, #{userId})
     </insert>
 
+<!--获取精选帖子-->
+    <select id="getSelectedPostList" resultMap="forumResultMap">
+        select * from forum_info where selected = 1;
+    </select>
 
+<!--点赞-->
+    <update id="like" parameterType="Forum">
+        UPDATE forum_info
+        SET up = up + 1
+        WHERE fid = #{fid}
+    </update>
+<!--    更新点赞数-->
+    <update id="replyTot" parameterType="Forum">
+        UPDATE forum_info
+        SET reply_count = reply_count + 1
+        WHERE fid = #{fid}
+    </update>
+<!--    获取某个用户的所有帖子-->
+    <select id="getUserPostList" resultMap="forumResultMap">
+        select * from forum_info where user_id = #{id}
+    </select>
 </mapper>
+
+

@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f6f6f6;
+    margin: 0;
+}
+
+header {
+    background-color: rgba(68, 68, 68, 0.8);
+    color: beige;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #eee;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: opacity 0.3s ease, color 0.3s ease; /* 添加颜色和透明度过渡效果 */
+    background-color: #555;
+    letter-spacing: 5px;/*设置字体之间的间距*/
+    opacity: 0.9;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+    opacity: 1;
+}

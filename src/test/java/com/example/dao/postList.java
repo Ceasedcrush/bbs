@@ -1,24 +1,38 @@
 package com.example.dao;
 
 import com.example.bean.Forum;
+import com.example.bean.Reply;
 import com.example.service.ForumService;
+import com.example.service.ReplyService;
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class postList {
     @Test
     public void test01() {
-        ForumService forumService = new ForumService();
-        List<Forum> postList = forumService.getpostList();
+        ReplyService replyService = new ReplyService();
+        List<Reply> replyList = replyService.getReplyByFid(1);
         
-        for (Forum i : postList) {
-//            System.out.println(i.getContent());
-            System.out.println(i.getAuthor());
-//            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(i.getCreateTime());
-//            System.out.println(time);
+        for (Reply i : replyList) {
+            System.out.println(i);
         }
+    }
+    @Test
+    public void test02() {
+        ForumService forumService = new ForumService();
+        List<Forum> forumList = (List<Forum>) forumService.getPostList();
 
+        for (Forum i : forumList) {
+            System.out.println(i);
+        }
+    }
+    @Test
+    public void test03() {
+        ForumService forumService = new ForumService();
+        List<Forum> forumList = (List<Forum>) forumService.getUserPostList(1);
+        for (Forum i : forumList) {
+            System.out.println(i);
+        }
     }
 }

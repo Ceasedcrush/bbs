@@ -1,25 +1,30 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 2023/12/30
+  Time: 22:46
+  To change this template use File | Settings | File Templates.
+--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<!DOCTYPE html>
-<html lang="zh">
+<html>
     <head>
-        <link rel="stylesheet" href="css/home.css">
-        <title>___校园论坛</title>
+        <title>用户页面</title>
+        <link rel="stylesheet" href="css/user_page.css">
     </head>
-
     <body>
-        <header>
-            <h1>校园论坛</h1>
-            <nav>
-                <ul>
-                    <li><a href="indexServlet">首页</a></li>
-                    <li><a href="allPostServlet?root=tourist">帖子广场</a></li>
-                    <li><a href="register.jsp">注册</a></li>
-                    <li><a href="login.jsp">登录</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav>
+            <ul>
+                <li>${user.nickname}, 欢迎您访问 xxx 校园论坛。</li>
+                <li><a href="indexServlet">首页</a> </li>
+                <li><a href="post.jsp" target="_blank">发帖</a> </li>
+                <li><a href="allPostServlet?root=user">帖子广场</a></li>
+                <li><a href="getUserPostListServlet">我的帖子</a></li>
+                <li><a href="#">个人信息</a></li>
+                <li><a href="logoutServlet">登出</a></li>
+            </ul>
+        </nav>
 
         <div class="container">
             <section class="selected-post">
@@ -31,19 +36,19 @@
                 </c:if>
                 <c:if test="${not empty selectedPostList}">
                     <c:forEach var="post" items="${selectedPostList}" varStatus="i">
-                            <c:if test="${i.index < 2}">
-                                <article>
-                                    <h3>帖子标题: ${post.title}</h3>
-                                    <p>${post.content}</p>
-                                    <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
-                                    <div id="link">
-                                        发布时间:${formattedDate}
-                                        <a href="upServlet">点赞( ${post.up} )</a>
-                                        <a href="reply.jsp">评论</a>
-                                        <a href="findUserByIdServlet?userId=${post.userId}">作者:${post.author.nickname}</a>
-                                    </div>
-                                </article>
-                            </c:if>
+                        <c:if test="${i.index < 2}">
+                            <article>
+                                <h3>帖子标题: ${post.title}</h3>
+                                <p>${post.content}</p>
+                                <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
+                                <div id="link">
+                                    发布时间:${formattedDate}
+                                    <a href="upServlet?fid=${post.fid}">点赞(  ${post.up}  )</a>
+                                    <a href="postInfoServlet?fid=${post.fid}" target="_blank">评论区</a>
+                                    <a href="#">作者:${post.author.nickname}</a>
+                                </div>
+                            </article>
+                        </c:if>
                     </c:forEach>
                 </c:if>
             </section>
@@ -71,7 +76,6 @@
                                 </div>
                             </article>
                         </c:if>
-
                     </c:forEach>
                 </c:if>
             </section>

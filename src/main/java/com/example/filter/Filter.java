@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter("/post.jsp")
-public class PostFilter implements Filter{
+@WebFilter(urlPatterns = {"/post.jsp", "/reply.jsp", "/upServlet"})
+public class Filter implements jakarta.servlet.Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         //将 request对象强转成 HttpServletRequest 对象

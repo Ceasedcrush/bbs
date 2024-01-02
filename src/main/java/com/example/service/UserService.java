@@ -11,6 +11,8 @@ public class UserService {
     //获取UserDao接口的对象
     UserDao userDao;
     User u;
+
+    //登录
     public User login(String username, String password) {
         sqlSession= MybatisUtils.getSqlSession();
         userDao = sqlSession.getMapper(UserDao.class);
@@ -21,19 +23,36 @@ public class UserService {
         return u;
     }
 
-    public boolean register(User user) {
+    //判断账号是否已存在
+    public boolean checkUser(String username) {
         sqlSession= MybatisUtils.getSqlSession();
         userDao = sqlSession.getMapper(UserDao.class);
-        u = userDao.select_Username(user.getUsername());
+        u = userDao.select_Username(username);
 
-        if (u == null) {
-            userDao.add_User(user);
-            
-            sqlSession.commit();
-        }
+        return u == null;
+    }
+
+    //注册
+    public void register(User user) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.add_User(user);
+
+        sqlSession.commit();
 
         sqlSession.close();
-        
-        return u == null;
+    }
+
+    //获取用户个人信息
+    public User findUserById(int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        u = userDao.findUserById(userId);
+
+        sqlSession.close();
+
+        return u;
     }
 }

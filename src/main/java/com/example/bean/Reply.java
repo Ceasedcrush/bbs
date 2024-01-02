@@ -2,8 +2,6 @@ package com.example.bean;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Reply implements Serializable {
     private int replyId;
@@ -12,7 +10,7 @@ public class Reply implements Serializable {
     private int fid;
     private String replyContent;
     private Timestamp replyTime;
-    private User  Author = new User();
+    private User  author = new User();
     public Reply() {
     }
 
@@ -23,7 +21,7 @@ public class Reply implements Serializable {
         this.fid = fid;
         this.replyContent = replyContent;
         this.replyTime = replyTime;
-        this.Author = author;
+        this.author = author;
     }
 
     public int getReplyId() {
@@ -75,11 +73,11 @@ public class Reply implements Serializable {
     }
 
     public User getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setAuthor(User author) {
-        Author = author;
+        this.author = author;
     }
 
     @Override
@@ -91,6 +89,7 @@ public class Reply implements Serializable {
                 ", fid=" + fid +
                 ", replyContent='" + replyContent + '\'' +
                 ", replyTime=" + replyTime +
+                ", author=" + author +
                 '}';
     }
 }

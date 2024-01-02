@@ -1,10 +1,12 @@
 package com.example.service;
 
+import com.example.bean.Reply;
 import com.example.dao.ReplyDao;
 import com.example.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;
+import java.util.List;
 
 public class ReplyService {
     SqlSession sqlSession;
@@ -19,5 +21,17 @@ public class ReplyService {
         sqlSession.commit();
         
         sqlSession.close();
+    }
+
+    //返回某个帖子的所有评论
+    public List<Reply> getReplyByFid(int fid) {
+        sqlSession = MybatisUtils.getSqlSession();
+        replyDao = sqlSession.getMapper(ReplyDao.class);
+
+        List<Reply> replyList = (List<Reply>) replyDao.getReplyByFid(fid);
+
+        sqlSession.close();
+
+        return replyList;
     }
 }

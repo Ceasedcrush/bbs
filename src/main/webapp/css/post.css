@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+nav {
+    background-color: rgba(68, 68, 68, 0.8);
+    color:beige;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    line-height: 2;/*设置行高是字体的2倍*/
+    align-items: center;/* 垂直居中 */
+}
+
+nav ul li {
+    font-size:x-large;
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li:first-child {
+    margin-right: auto; /* 第一个元素靠左对齐 */
+}
+
+nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;/*取消链接的下划线*/
+    letter-spacing: 5px;/*设置字体之间的间距*/
+    color: #fff;
+    background-color: #444;
+    padding: 8px 12px;
+    border-radius: 20px;/*设置边框圆角*/
+    opacity: 0.9;
+    transition: opacity 0.3s ease, color 0.3s ease; /* 添加颜色和透明度过渡效果 */
+}
+
+/*设置链接元素在悬停时的样式*/
+nav ul li a:hover {
+    color: #ffcc00;
+    opacity: 1;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+article {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    font-size: x-large;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+form input[type="text"], form textarea {
+    font-size: 16px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+form input[type="submit"] {
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
