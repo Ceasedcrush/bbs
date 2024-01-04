@@ -34,4 +34,16 @@ public class ReplyService {
 
         return replyList;
     }
+
+    //给评论点赞
+    public void replyUp(int replyId) {
+        sqlSession = MybatisUtils.getSqlSession();
+        replyDao = sqlSession.getMapper(ReplyDao.class);
+
+        replyDao.replyUp(replyId);
+
+        sqlSession.commit();
+
+        sqlSession.close();
+    }
 }

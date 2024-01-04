@@ -14,11 +14,21 @@ public class UpServlet extends HttpServlet {
     ForumService forumService = new ForumService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int fid = Integer.parseInt(req.getParameter("fid"));
+        String fid = req.getParameter("fid");
 
-        forumService.like(fid);
+        forumService.like(Integer.parseInt(fid));
 
-        resp.sendRedirect("indexServlet");
+        String URL = req.getParameter("URL") + "?fid=" + fid;
+
+        //判断是否是作者主页发出的指令
+        if (req.getParameter("id") != null) {
+            URL += "&id=" + req.getParameter("id");
+        }
+
+        int f = Integer.parseInt(fid);
+        req.setAttribute("up_msg", "点赞成功");
+        req.setAttribute("upId", f);
+        req.getRequestDispatcher(URL).forward(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

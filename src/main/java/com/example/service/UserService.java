@@ -5,6 +5,8 @@ import com.example.dao.UserDao;
 import com.example.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Date;
+
 public class UserService {
     //获取sqlSession对象
     SqlSession sqlSession;
@@ -55,4 +57,74 @@ public class UserService {
 
         return u;
     }
+
+    public void update_nickname (String nickname, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_nickname(nickname, userId);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    public void update_password(String password, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_password(password, userId);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    public void update_birthday(Date birthday, int userId) {
+        sqlSession = MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_birthday(birthday, userId);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+    public void update_sex(String sex, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_sex(sex, userId);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    public void update_phone(String phone, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_phone(phone, userId);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    public void update_email(String email, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_email(email, userId);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    public void update_signature(String signature, int userId) {
+        sqlSession= MybatisUtils.getSqlSession();
+        userDao = sqlSession.getMapper(UserDao.class);
+
+        userDao.update_signature(signature, userId);
+
+        sqlSession.commit();
+
+        sqlSession.close();
+    }
+
 }

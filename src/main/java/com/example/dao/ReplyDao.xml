@@ -28,4 +28,11 @@
     <select id="getReplyByFid" resultMap="replyResultMap">
         select * from reply_info where fid = #{fid};
     </select>
+
+    <update id="replyUp" parameterType="Reply">
+        UPDATE reply_info
+        SET up = up + 1
+        WHERE reply_id = #{replyId}
+    </update>
+
 </mapper>

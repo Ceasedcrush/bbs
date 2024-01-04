@@ -21,6 +21,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //获取精选帖子
         List<Forum> selectedPostList =  forumService.getSelectedPostList();
+
         //以点赞数从多到少进行一个排序
         selectedPostList.sort(Comparator.comparingInt(Forum::getUp).reversed());
 
@@ -36,13 +37,10 @@ public class IndexServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         Object user = httpSession.getAttribute("user");
 
-        Object User = new User();
         //根据用户角色不同转发到不同页面
         if (user == null) req.getRequestDispatcher("home.jsp").forward(req, resp);
-        else if(user == User) req.getRequestDispatcher("user_page.jsp").forward(req, resp);
-        else req.getRequestDispatcher("admin_page.jsp").forward(req, resp);
-        // 转发到 home.jsp 页面
-//        req.getRequestDispatcher("home.jsp").forward(req, resp);
+        else if(user instanceof  User) req.getRequestDispatcher("user_page.jsp").forward(req, resp);
+        else resp.sendRedirect("allPostServlet");
     }
 
     @Override

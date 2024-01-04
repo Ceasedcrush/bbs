@@ -1,7 +1,13 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f6f6f6;
+    margin: 0;
 }
 
 nav {
@@ -15,8 +21,8 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    line-height: 2;/*设置行高是字体的2倍*/
-    align-items: center;/* 垂直居中 */
+    line-height: 2;
+    align-items: center;
 }
 
 nav ul li {
@@ -26,26 +32,59 @@ nav ul li {
 }
 
 nav ul li:first-child {
-    margin-right: auto; /* 第一个元素靠左对齐 */
+    margin-right: auto;
 }
 
 nav ul li a {
     font-size: 16px;
     font-weight: 500;
-    text-decoration: none;/*取消链接的下划线*/
-    letter-spacing: 5px;/*设置字体之间的间距*/
+    text-decoration: none;
+    letter-spacing: 5px;
     color: #fff;
     background-color: #444;
     padding: 8px 12px;
-    border-radius: 20px;/*设置边框圆角*/
+    border-radius: 20px;
     opacity: 0.9;
-    transition: opacity 0.3s ease, color 0.3s ease; /* 添加颜色和透明度过渡效果 */
-
+    transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-/*设置链接元素在悬停时的样式*/
 nav ul li a:hover {
     color: #ffcc00;
     opacity: 1;
 }
 
+.container {
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-size: 30px;
+    color: #333;
+    text-align: center;
+}
+
+article {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#link {
+    text-align: right;
+}
+#link a {
+    margin-left: 15px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    text-align: right;
+}

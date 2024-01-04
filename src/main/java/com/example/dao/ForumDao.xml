@@ -44,7 +44,7 @@
         SET up = up + 1
         WHERE fid = #{fid}
     </update>
-<!--    更新点赞数-->
+<!--    更新评论数-->
     <update id="replyTot" parameterType="Forum">
         UPDATE forum_info
         SET reply_count = reply_count + 1
@@ -54,6 +54,33 @@
     <select id="getUserPostList" resultMap="forumResultMap">
         select * from forum_info where user_id = #{id}
     </select>
+<!--    删除帖子-->
+    <delete id="deletePost" parameterType="Forum">
+        DELETE FROM forum_info WHERE fid = #{fid}
+    </delete>
+<!--    更新帖子-->
+    <update id="updatePost" parameterType="Forum">
+        UPDATE forum_info
+        <set>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="title != null">
+                title = #{title}
+            </if>
+        </set>
+        where fid = #{fid}
+    </update>
+<!--    删除某用户的所有帖子-->
+    <delete id="deleteUserAllPost" parameterType="Forum">
+        delete from forum_info where user_id = #{userId}
+    </delete>
+<!--    设置帖子为精选帖-->
+    <update id="setSelectedPost" parameterType="Forum">
+        UPDATE forum_info
+        set selected = 1
+        where fid = #{fid}
+    </update>
 </mapper>
 
 

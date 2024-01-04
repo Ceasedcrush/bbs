@@ -96,4 +96,28 @@ public class ForumService {
         return userPostList;
     }
 
+    //删除帖子
+    public int deletePost(int fid) {
+        sqlSession = MybatisUtils.getSqlSession();
+        forumDao = sqlSession.getMapper(ForumDao.class);
+
+        int cnt = forumDao.deletePost(fid);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return cnt;
+    }
+    //更新帖子
+    public int updatePost(String title, String content, int fid) {
+        sqlSession = MybatisUtils.getSqlSession();
+        forumDao = sqlSession.getMapper(ForumDao.class);
+
+        int cnt = forumDao.updatePost(title, content, fid);
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        return cnt;
+    }
 }

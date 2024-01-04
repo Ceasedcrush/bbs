@@ -21,4 +21,12 @@ public interface ForumDao {
     void replyTot(int fid);
     //获取某个用户的所有帖子
     List<Forum> getUserPostList(int id);
+    //删除帖子
+    int deletePost(int fid);
+    //更改帖子
+    int updatePost(@Param("title") String title, @Param("content") String content, @Param("fid") int fid);
+    //删除某个用户的所有帖子
+    void deleteUserAllPost(int userId);
+    //设置帖子为精选帖
+    void setSelectedPost(int fid);
 }

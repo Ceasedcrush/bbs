@@ -1,25 +1,28 @@
 package com.example.controller;
 
+import com.example.service.AdminUserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/logoutServlet")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/deleteUserServlet")
+public class DeleteUserServlet extends HttpServlet {
+    AdminUserService adminUserService = new AdminUserService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //        将session中的用户信息失效
-        HttpSession httpSession = req.getSession();
-        httpSession.invalidate();
+        int id = Integer.parseInt(req.getParameter("userId"));
 
-        resp.sendRedirect("index.jsp");
+        adminUserService.delete_user(id);
+
+        String URL = req.getParameter("URL");
+
+        req.setAttribute("delU_msg", "用户删除成功");
+        req.getRequestDispatcher(URL).forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doGet(req, resp);

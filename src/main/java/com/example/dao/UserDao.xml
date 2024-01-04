@@ -12,11 +12,61 @@
     </select>
     
     <insert id="add_User" parameterType="com.example.bean.User">
-        insert into user_info (nickname, username, password, birthday, face, sex, phone, email, signature)
-        values (#{nickname}, #{username}, #{password}, #{birthday}, #{face}, #{sex}, #{phone}, #{email}, #{signature})
+        insert into user_info (nickname, username, password, birthday, sex, phone, email, signature)
+        values (#{nickname}, #{username}, #{password}, #{birthday}, #{sex}, #{phone}, #{email}, #{signature})
     </insert>
     
     <select id="findUserById" resultType="com.example.bean.User">
         select * from user_info where id = #{userId};
     </select>
+
+    <update id="update_nickname" parameterType="com.example.bean.User">
+        update user_info
+        SET nickname = #{nickname}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_password" parameterType="com.example.bean.User">
+        update user_info
+        SET password = #{password}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_birthday" parameterType="com.example.bean.User">
+        UPDATE user_info
+        SET birthday = #{birthday}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_sex" parameterType="com.example.bean.User">
+        update user_info
+        SET sex = #{sex}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_phone" parameterType="com.example.bean.User">
+        update user_info
+        SET phone = #{phone}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_email" parameterType="com.example.bean.User">
+        update user_info
+        SET email = #{email}
+        WHERE id = #{userId}
+    </update>
+
+    <update id="update_signature" parameterType="com.example.bean.User">
+        update user_info
+        SET signature = #{signature}
+        WHERE id = #{userId}
+    </update>
+
+    <select id="getAllUser" parameterType="com.example.bean.User">
+        select * from user_info
+    </select>
+
+    <delete id="delete_user" parameterType="com.example.bean.User">
+        delete from user_info where id = #{id}
+    </delete>
 </mapper>

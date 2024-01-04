@@ -14,16 +14,18 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/getReplyByFidServlet")
-public class GetReplyByFidServlet extends HttpServlet {
+@WebServlet("/replyUpServlet")
+public class ReplyUpServlet extends HttpServlet {
     ReplyService replyService = new ReplyService();
     ForumService forumService = new ForumService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int replyId = Integer.parseInt(req.getParameter("replyId"));
         int fid = Integer.parseInt(req.getParameter("fid"));
 
-        Forum postInfo = forumService.post_info(fid);
+        replyService.replyUp(replyId);
 
+        Forum postInfo = forumService.post_info(fid);
         //获取全部帖子信息
         List<Reply> allpostList = replyService.getReplyByFid(fid);
         allpostList.sort(Comparator.comparingInt(Reply::getReplyId).reversed());
@@ -37,14 +39,15 @@ public class GetReplyByFidServlet extends HttpServlet {
         int ed = Math.min(bg + 10, siz);//防止越界
 
         List<Reply> replyList = allpostList.subList(bg, ed);
-        System.out.println(replyList.size());
+
+
+        req.setAttribute("up_msg", "点赞成功");
+        req.setAttribute("upId", fid);
         req.setAttribute("replyList", replyList);
         req.setAttribute("totalPages",  (int)(siz + 9) / 10);//获取总共的页数（上取整）
         req.setAttribute("postInfo", postInfo);
 
-        String URL = req.getParameter("URL");
-
-        req.getRequestDispatcher(URL).forward(req, resp);
+        req.getRequestDispatcher("reply.jsp").forward(req, resp);
     }
 
     @Override

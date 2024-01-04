@@ -31,9 +31,9 @@ public class PostServlet extends HttpServlet {
         Timestamp createTime = Timestamp.valueOf(nowTime);//时间转换 java.util.Date是java.sql.Date的父类
         
         forumService.post(title, content, createTime, userId);
-        
+
         req.setAttribute("post_msg", "发帖成功！");
-        req.getRequestDispatcher("/user_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("getUserPostListServlet").forward(req, resp);
     }
 
     @Override

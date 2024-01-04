@@ -1,45 +1,53 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
-nav {
+body {
+    line-height: 1.6;
+    background-color: #f6f6f6;
+    margin: 0;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f6f6f6;
+    margin: 0;
+}
+
+header {
     background-color: rgba(68, 68, 68, 0.8);
-    color:beige;
-    padding: 10px;
+    color: beige;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    list-style: none;
     display: flex;
-    line-height: 2;
-    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 nav ul li {
-    font-size:x-large;
-    display: inline;
-    margin-left: 20px;
-}
-
-nav ul li:first-child {
-    margin-right: auto;
+    margin: 0 10px;
 }
 
 nav ul li a {
-    font-size: 16px;
-    font-weight: 500;
     text-decoration: none;
-    letter-spacing: 5px;
-    color: #fff;
-    background-color: #444;
-    padding: 8px 12px;
+    color: #eee;
+    font-weight: bold;
+    padding: 8px 16px;
     border-radius: 20px;
-    opacity: 0.9;
     transition: opacity 0.3s ease, color 0.3s ease;
+    background-color: #555;
+    letter-spacing: 5px;
+    opacity: 0.9;
 }
 
 nav ul li a:hover {
@@ -76,41 +84,6 @@ article {
     text-align: right;
 }
 
-#commentModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 500px;
-    max-width: 80%;
-}
-
-#commentModal textarea{
-    width: calc(100% - 20px);
-    height: 100px;
-    padding: 10px;
-    border-radius: 20px;
-    resize: none;
-}
-
-#commentModal input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#commentModal input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 #allReply h4 {
     font-size: x-large;
     margin-bottom: 30px;
@@ -131,7 +104,6 @@ article {
     padding: 10px;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
 }
 
 #allReply p {
@@ -171,4 +143,3 @@ article {
 .reply a:hover {
     color: #007bff;
 }
-

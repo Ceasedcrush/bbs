@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/post.jsp", "/reply.jsp", "/upServlet"})
+@WebFilter(urlPatterns = {"/post.jsp", "/reply.jsp", "/upServlet", "/replyUpServlet"})
 public class Filter implements jakarta.servlet.Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

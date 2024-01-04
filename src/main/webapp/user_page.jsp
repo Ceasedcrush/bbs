@@ -19,9 +19,9 @@
                 <li>${user.nickname}, 欢迎您访问 xxx 校园论坛。</li>
                 <li><a href="indexServlet">首页</a> </li>
                 <li><a href="post.jsp" target="_blank">发帖</a> </li>
-                <li><a href="allPostServlet?root=user">帖子广场</a></li>
+                <li><a href="allPostServlet">帖子广场</a></li>
                 <li><a href="getUserPostListServlet">我的帖子</a></li>
-                <li><a href="#">个人信息</a></li>
+                <li><a href="user_info.jsp">个人信息</a></li>
                 <li><a href="logoutServlet">登出</a></li>
             </ul>
         </nav>
@@ -43,9 +43,9 @@
                                 <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
                                 <div id="link">
                                     发布时间:${formattedDate}
-                                    <a href="upServlet?fid=${post.fid}">点赞(  ${post.up}  )</a>
-                                    <a href="postInfoServlet?fid=${post.fid}" target="_blank">评论区</a>
-                                    <a href="#">作者:${post.author.nickname}</a>
+                                    <a href="upServlet?fid=${post.fid}&URL=indexServlet">${empty up_msg  ||  upId != post.fid ? '点赞  ' : '点赞成功！ '}(  ${post.up}  )</a>
+                                    <a href="getReplyByFidServlet?fid=${post.fid}&URL=reply.jsp" target="_blank">评论区</a>
+                                    <a href="findUserByIdServlet?userId=${post.userId}&URL=user_authorInfo.jsp" target="_blank">作者:${post.author.nickname}</a>
                                 </div>
                             </article>
                         </c:if>
@@ -69,10 +69,9 @@
                                 <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
                                 <div id="link">
                                     发布时间:${formattedDate}
-                                    <a href="#">点赞(  )</a>
-                                    <a href="#">评论</a>
-                                    <a href="#">作者:${post.author.nickname}</a>
-                                    <a href="#">点此查看全帖</a>
+                                    <a href="upServlet?fid=${post.fid}&URL=indexServlet">${empty up_msg  ||  upId != post.fid ? '点赞  ' : '点赞成功！ '}(  ${post.up}  )</a>
+                                    <a href="findUserByIdServlet?userId=${post.userId}&URL=user_authorInfo.jsp" target="_blank">作者:${post.author.nickname}</a>
+                                    <a href="getReplyByFidServlet?fid=${post.fid}&URL=reply.jsp" target="_blank">点此查看全帖</a>
                                 </div>
                             </article>
                         </c:if>

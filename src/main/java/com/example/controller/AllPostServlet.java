@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/allPostServlet")
@@ -20,6 +21,7 @@ public class AllPostServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //获取全部帖子信息
         List<Forum> allpostList = forumService.getPostList();
+        allpostList.sort(Comparator.comparingInt(Forum::getFid).reversed());
         //帖子数量
         int siz = allpostList.size();
 
@@ -38,8 +40,9 @@ public class AllPostServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         Object user = httpSession.getAttribute("user");
         Object User = new User();
+
         if (user == null) req.getRequestDispatcher("post_square.jsp").forward(req, resp);
-        else if(user instanceof User) req.getRequestDispatcher("user_page.jsp").forward(req, resp);
+        else if(user instanceof User) req.getRequestDispatcher("user_post_square.jsp").forward(req, resp);
         else req.getRequestDispatcher("admin_page.jsp").forward(req, resp);
     }
 

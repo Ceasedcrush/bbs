@@ -37,10 +37,11 @@
                                     <p>${post.content}</p>
                                     <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
                                     <div id="link">
-                                        发布时间:${formattedDate}
+                                        <span style="color: #007bff; font-weight: bold;">发布时间:${formattedDate}</span>
                                         <a href="upServlet">点赞( ${post.up} )</a>
-                                        <a href="reply.jsp">评论</a>
-                                        <a href="findUserByIdServlet?userId=${post.userId}">作者:${post.author.nickname}</a>
+                                        <a href="postInfoServlet?fid=${post.fid}" target="_blank">评论区</a>
+                                        <a href="findUserByIdServlet?userId=${post.userId}&URL=authorInfo.jsp" target="_blank">作者:${post.author.nickname}</a>
+
                                     </div>
                                 </article>
                             </c:if>
@@ -63,15 +64,13 @@
                                 <h3>帖子标题: ${post.title}</h3>
                                 <fmt:formatDate value="${post.createTime}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
                                 <div id="link">
-                                    发布时间:${formattedDate}
-                                    <a href="#">点赞(  )</a>
-                                    <a href="#">评论</a>
-                                    <a href="#">作者:${post.author.nickname}</a>
-                                    <a href="#">点此查看全帖</a>
+                                    <span style="color: #007bff; font-weight: bold;">发布时间:${formattedDate}</span>
+                                    <a href="upServlet">点赞( ${post.up} )</a>
+                                    <a href="findUserByIdServlet?userId=${post.userId}&URL=authorInfo.jsp" target="_blank">作者:${post.author.nickname}</a>
+                                    <a href="postInfoServlet?fid=${post.fid}" target="_blank">点此查看全帖</a>
                                 </div>
                             </article>
                         </c:if>
-
                     </c:forEach>
                 </c:if>
             </section>

@@ -21,20 +21,20 @@ public class RegisterServlet extends HttpServlet {
 
         //检查用户名长度
         if (nickname.length() > 16) {
-            req.setAttribute("nickname_msg", "用户名过长");
+            req.setAttribute("register_msg", "用户名过长");
             req.getRequestDispatcher("/register.jsp").forward(req, resp);
             return ;
         }
         //检查账号长度
         if (username.length() < 6 || username.length() > 20 ){
-            req.setAttribute("username_msg", "账号格式错误");
+            req.setAttribute("register_msg", "账号格式错误");
             req.getRequestDispatcher("/register.jsp").forward(req, resp);
 
             return ;
         }
         //检查密码长度
         if (password.length() < 6 || password.length() > 20) {
-            req.setAttribute("password_msg", "密码格式错误");
+            req.setAttribute("register_msg", "密码格式错误");
             req.getRequestDispatcher("/register.jsp").forward(req, resp);
             return ;
         }

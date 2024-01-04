@@ -1,34 +1,38 @@
 package com.example.controller;
 
 import com.example.bean.Forum;
-import com.example.bean.Reply;
+import com.example.bean.User;
 import com.example.service.ForumService;
-import com.example.service.ReplyService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet("/getReplyByFidServlet")
-public class GetReplyByFidServlet extends HttpServlet {
-    ReplyService replyService = new ReplyService();
+@WebServlet("/updatePostServlet")
+public class UpdatePostServlet extends HttpServlet {
     ForumService forumService = new ForumService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int fid = Integer.parseInt(req.getParameter("fid"));
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
 
-        Forum postInfo = forumService.post_info(fid);
+        HttpSession httpSession = req.getSession();
 
-        //获取全部帖子信息
-        List<Reply> allpostList = replyService.getReplyByFid(fid);
-        allpostList.sort(Comparator.comparingInt(Reply::getReplyId).reversed());
-        //帖子数量
-        int siz = allpostList.size();
+        User user = (User)httpSession.getAttribute("user");
+
+        //更新操作
+        forumService.updatePost(title, content, fid);
+
+        List<Forum> userPostList = forumService.getUserPostList(user.getId());
+        userPostList.sort(Comparator.comparingInt(Forum::getFid).reversed());
+        int siz = userPostList.size();
         //分页逻辑处理(分块思想)
         int page = 1;//默认页码
         if(req.getParameter("page") != null) page = Integer.parseInt(req.getParameter("page"));//获取当前页数
@@ -36,15 +40,14 @@ public class GetReplyByFidServlet extends HttpServlet {
         int bg = (page - 1) * 10;//每10个帖子为一页
         int ed = Math.min(bg + 10, siz);//防止越界
 
-        List<Reply> replyList = allpostList.subList(bg, ed);
-        System.out.println(replyList.size());
-        req.setAttribute("replyList", replyList);
+        userPostList = userPostList.subList(bg, ed);
+
+        req.setAttribute("userPostList", userPostList);
         req.setAttribute("totalPages",  (int)(siz + 9) / 10);//获取总共的页数（上取整）
-        req.setAttribute("postInfo", postInfo);
+        req.setAttribute("update_msg", "更新成功");
 
-        String URL = req.getParameter("URL");
 
-        req.getRequestDispatcher(URL).forward(req, resp);
+        req.getRequestDispatcher("user_postList.jsp").forward(req, resp);
     }
 
     @Override

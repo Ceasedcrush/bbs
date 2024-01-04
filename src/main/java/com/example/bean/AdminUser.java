@@ -4,16 +4,14 @@ import java.io.Serializable;
 
 public class AdminUser implements Serializable {
     private int id;
-    private int status;
     private String nickname;
     private String username;
     private String password;
     public AdminUser(){
 
     }
-    public AdminUser(int id, int status, String nickname, String username, String password) {
+    public AdminUser(int id, String nickname, String username, String password) {
         this.id = id;
-        this.status = status;
         this.nickname = nickname;
         this.username = username;
         this.password = password;
@@ -25,14 +23,6 @@ public class AdminUser implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public String getNickname() {
@@ -63,7 +53,6 @@ public class AdminUser implements Serializable {
     public String toString() {
         return "AdminUser{" +
                 "id=" + id +
-                ", status=" + status +
                 ", nickname='" + nickname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

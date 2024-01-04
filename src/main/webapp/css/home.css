@@ -38,9 +38,9 @@ nav ul li a {
     font-weight: bold;
     padding: 8px 16px;
     border-radius: 20px;
-    transition: opacity 0.3s ease, color 0.3s ease; /* 添加颜色和透明度过渡效果 */
+    transition: opacity 0.3s ease, color 0.3s ease;
     background-color: #555;
-    letter-spacing: 5px;/*设置字体之间的间距*/
+    letter-spacing: 5px;
     opacity: 0.9;
 }
 
@@ -66,10 +66,10 @@ h2 {
 }
 
 article {
+    margin-bottom: 15px;
     background-color: #fff;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
 }
 
 #link {

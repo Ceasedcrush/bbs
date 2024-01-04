@@ -19,12 +19,13 @@
                 <li>${user.nickname}, 欢迎您访问 xxx 校园论坛。</li>
                 <li><a href="indexServlet">首页</a> </li>
                 <li><a href="post.jsp" target="_blank">发帖</a> </li>
-                <li><a href="allPostServlet?root=user">帖子广场</a></li>
-                <li><a href="#">我的帖子</a></li>
-                <li><a href="#">个人信息</a></li>
+                <li><a href="allPostServlet">帖子广场</a></li>
+                <li><a href="getUserPostListServlet">我的帖子</a></li>
+                <li><a href="user_info.jsp">个人信息</a></li>
                 <li><a href="logoutServlet">登出</a></li>
             </ul>
         </nav>
+
         <div style="width: 80%;margin: 20px auto;overflow: hidden;">
              <article>
                  <h2>发帖</h2>
